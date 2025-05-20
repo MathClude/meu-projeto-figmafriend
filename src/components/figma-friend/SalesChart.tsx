@@ -1,14 +1,2 @@
-import { SalesChartClient } from "./SalesChartClient";
-
-const chartData = [
-  { month: "Jan", desktop: 186, mobile: 80 },
-  { month: "Feb", desktop: 305, mobile: 200 },
-  { month: "Mar", desktop: 237, mobile: 120 },
-  { month: "Apr", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "Jun", desktop: 214, mobile: 140 },
-];
-
-export function SalesChart() {
-  return <SalesChartClient data={chartData} />;
-}
+// This file is effectively deleted as its content is moved to /src/components/health-dashboard/TotalConsultationsChart.tsx
+// console.log("This file (src/components/figma-friend/SalesChart.tsx) has been replaced by src/components/health-dashboard/TotalConsultationsChart.tsx");

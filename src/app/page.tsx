@@ -1,10 +1,10 @@
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
-import { Dashboard } from '@/components/figma-friend/Dashboard';
+import { HealthDashboard } from '@/components/health-dashboard/HealthDashboard'; // Updated path
 
 export default function HomePage() {
   return (
     <DashboardLayout>
-      <Dashboard />
+      <HealthDashboard />
     </DashboardLayout>
   );
 }
