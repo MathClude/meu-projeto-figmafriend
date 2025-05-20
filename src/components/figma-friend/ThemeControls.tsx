@@ -1,7 +1,8 @@
+
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useEffect, useRef, useState, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -27,7 +28,7 @@ function SubmitButton() {
 }
 
 export function ThemeControls() {
-  const [state, formAction] = useFormState(handleGenerateTheme, initialState);
+  const [state, formAction] = useActionState(handleGenerateTheme, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   const [generatedColors, setGeneratedColors] = useState<ActionState['data'] | null>(null);
