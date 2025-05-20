@@ -34,7 +34,7 @@ export function CSCStatsCard({ startDate, endDate }: CSCStatsCardProps) {
           {/* Left side: Total Custo CSC */}
           <div className="md:col-span-1 space-y-1">
             <p className="text-sm text-primary-foreground/80">Custo CSC</p>
-            <p className="text-2xl font-bold">R$ 1.000.000,00</p>
+            <p className="text-2xl font-bold whitespace-nowrap">R$ 1.000.000,00</p>
             <p className="text-sm text-primary-foreground/80 mt-2">% Custo CSC</p>
             <p className="text-2xl font-bold">25%</p>
           </div>
