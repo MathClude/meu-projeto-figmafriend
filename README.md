@@ -1,5 +1,3 @@
-# Firebase Studio
+# Dashboards
 
-This is a NextJS starter in Firebase Studio.
-
-To get started, take a look at src/app/page.tsx.
+This is a web-page based hub for all admin reports
