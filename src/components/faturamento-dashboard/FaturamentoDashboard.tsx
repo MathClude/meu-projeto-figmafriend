@@ -2,15 +2,36 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StatCard } from '@/components/health-dashboard/StatCard'; // Reusing StatCard
 import { LineChart as LineChartIcon } from 'lucide-react';
-import { FaturamentoChart } from './FaturamentoChart';
-import { FaturamentoCustoResultadoChart } from './FaturamentoCustoResultadoChart';
-import { FaturamentoTable } from './FaturamentoTable';
+import dynamic from 'next/dynamic';
+import { Skeleton } from '@/components/ui/skeleton';
+
+const DynamicFaturamentoChart = dynamic(
+  () => import('./FaturamentoChart').then((mod) => mod.FaturamentoChart),
+  {
+    loading: () => <Skeleton className="h-[300px] w-full rounded-md" />,
+    ssr: false,
+  }
+);
+
+const DynamicFaturamentoCustoResultadoChart = dynamic(
+  () => import('./FaturamentoCustoResultadoChart').then((mod) => mod.FaturamentoCustoResultadoChart),
+  {
+    loading: () => <Skeleton className="h-[300px] w-full rounded-md" />,
+    ssr: false,
+  }
+);
+
+const DynamicFaturamentoTable = dynamic(
+  () => import('./FaturamentoTable').then((mod) => mod.FaturamentoTable),
+  {
+    loading: () => <Skeleton className="h-[300px] w-full rounded-md" />,
+    ssr: false, 
+  }
+);
 
 export function FaturamentoDashboard() {
   return (
     <div className="space-y-6 md:space-y-8">
-      <h1 className="text-3xl font-bold tracking-tight text-foreground">Faturamento</h1>
-      
       {/* Stat Cards Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <StatCard
@@ -47,7 +68,7 @@ export function FaturamentoDashboard() {
             <CardTitle className="text-lg">Faturamento</CardTitle>
           </CardHeader>
           <CardContent className="pl-0">
-            <FaturamentoChart />
+            <DynamicFaturamentoChart />
           </CardContent>
         </Card>
         
@@ -56,15 +77,18 @@ export function FaturamentoDashboard() {
             <CardTitle className="text-lg">Faturamento X Custo X Resultado Bruto</CardTitle>
           </CardHeader>
           <CardContent className="pl-0">
-            <FaturamentoCustoResultadoChart />
+            <DynamicFaturamentoCustoResultadoChart />
           </CardContent>
         </Card>
       </div>
 
       {/* Data Table Row */}
       <Card className="transition-all hover:shadow-lg">
-        <CardContent className="p-0 pt-4"> {/* Remove default padding for full-width table effect */}
-          <FaturamentoTable />
+        <CardHeader>
+           <CardTitle className="text-lg">Detalhes por Empresa</CardTitle>
+        </CardHeader>
+        <CardContent className="pt-0"> {/* Adjusted padding because header is present */}
+          <DynamicFaturamentoTable />
         </CardContent>
       </Card>
     </div>
