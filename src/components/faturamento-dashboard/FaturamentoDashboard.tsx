@@ -1,17 +1,18 @@
 
-"use client"; // Add this directive
+"use client"; 
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { StatCard } from '@/components/health-dashboard/StatCard'; // Reusing StatCard
+import { StatCard } from '@/components/health-dashboard/StatCard'; 
 import { LineChart as LineChartIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useEffect } from 'react';
 
 const DynamicFaturamentoChart = dynamic(
   () => import('./FaturamentoChart').then((mod) => mod.FaturamentoChart),
   {
     loading: () => <Skeleton className="h-[300px] w-full rounded-md" />,
-    ssr: false,
+    ssr: false, 
   }
 );
 
@@ -19,7 +20,7 @@ const DynamicFaturamentoCustoResultadoChart = dynamic(
   () => import('./FaturamentoCustoResultadoChart').then((mod) => mod.FaturamentoCustoResultadoChart),
   {
     loading: () => <Skeleton className="h-[300px] w-full rounded-md" />,
-    ssr: false,
+    ssr: false, 
   }
 );
 
@@ -27,11 +28,20 @@ const DynamicFaturamentoTable = dynamic(
   () => import('./FaturamentoTable').then((mod) => mod.FaturamentoTable),
   {
     loading: () => <Skeleton className="h-[300px] w-full rounded-md" />,
-    ssr: false,
+    ssr: false, 
   }
 );
 
-export function FaturamentoDashboard() {
+interface FaturamentoDashboardProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export function FaturamentoDashboard({ startDate, endDate }: FaturamentoDashboardProps) {
+  useEffect(() => {
+    // console.log("FaturamentoDashboard dates:", { startDate, endDate }); // For debugging
+  }, [startDate, endDate]);
+
   return (
     <div className="space-y-6 md:space-y-8">
       {/* Stat Cards Row */}
@@ -70,7 +80,7 @@ export function FaturamentoDashboard() {
             <CardTitle className="text-lg">Faturamento</CardTitle>
           </CardHeader>
           <CardContent className="pl-0">
-            <DynamicFaturamentoChart />
+            <DynamicFaturamentoChart startDate={startDate} endDate={endDate} />
           </CardContent>
         </Card>
         
@@ -79,7 +89,7 @@ export function FaturamentoDashboard() {
             <CardTitle className="text-lg">Faturamento X Custo X Resultado Bruto</CardTitle>
           </CardHeader>
           <CardContent className="pl-0">
-            <DynamicFaturamentoCustoResultadoChart />
+            <DynamicFaturamentoCustoResultadoChart startDate={startDate} endDate={endDate} />
           </CardContent>
         </Card>
       </div>
@@ -89,8 +99,8 @@ export function FaturamentoDashboard() {
         <CardHeader>
            <CardTitle className="text-lg">Detalhes por Empresa</CardTitle>
         </CardHeader>
-        <CardContent className="pt-0"> {/* Adjusted padding because header is present */}
-          <DynamicFaturamentoTable />
+        <CardContent className="pt-0">
+          <DynamicFaturamentoTable startDate={startDate} endDate={endDate} />
         </CardContent>
       </Card>
     </div>

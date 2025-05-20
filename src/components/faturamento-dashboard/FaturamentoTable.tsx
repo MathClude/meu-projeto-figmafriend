@@ -1,10 +1,12 @@
+
 "use client";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
+import { useEffect } from "react";
 
-const faturamentoData = [
+const faturamentoDataOriginal = [
   { empresa: "Shouders", faturamento: "R$ 1.200.000,00", percTotal: "20%", percResultado: "15%", percCrescimento: "+ 5%" },
   { empresa: "OABRJ", faturamento: "R$ 1.200.000,00", percTotal: "20%", percResultado: "15%", percCrescimento: "+ 5%" },
   { empresa: "D2PAR", faturamento: "R$ 1.200.000,00", percTotal: "20%", percResultado: "15%", percCrescimento: "+ 5%" },
@@ -17,7 +19,19 @@ const faturamentoData = [
   { empresa: "Mercantil", faturamento: "R$ 1.200.000,00", percTotal: "20%", percResultado: "15%", percCrescimento: "+ 5%" },
 ];
 
-export function FaturamentoTable() {
+interface FaturamentoTableProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export function FaturamentoTable({ startDate, endDate }: FaturamentoTableProps) {
+  useEffect(() => {
+    // console.log('FaturamentoTable received dates:', { startDate, endDate });
+    // TODO: Filter faturamentoDataOriginal based on startDate and endDate or fetch new data
+  }, [startDate, endDate]);
+
+  const faturamentoData = faturamentoDataOriginal; // Use original hardcoded data for now
+
   return (
     <div data-ai-hint="billing details table">
       <Table>

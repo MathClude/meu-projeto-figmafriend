@@ -1,5 +1,5 @@
-// Adapted from figma-friend/SalesChart.tsx
-// This will be the "Total de Consultas" chart (monthly bar chart)
+
+"use client"; // Marking wrapper as client to allow console.log for debugging if needed
 import { TotalConsultationsChartClient } from "./TotalConsultationsChartClient";
 
 const chartData = [
@@ -17,6 +17,26 @@ const chartData = [
   { month: "DEZ", Consultas: 1400 },
 ];
 
-export function TotalConsultationsChart() {
-  return <TotalConsultationsChartClient data={chartData} />;
+interface TotalConsultationsChartProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export function TotalConsultationsChart({ startDate, endDate }: TotalConsultationsChartProps) {
+  // TODO: Filter chartData based on startDate and endDate if this component were handling data fetching/filtering
+  // console.log('TotalConsultationsChart received dates:', { startDate, endDate });
+  
+  // For now, use the original hardcoded data or adapt it if filtering logic is added here.
+  // This example assumes filtering would modify `dataForClient`.
+  const dataForClient = chartData.map(item => ({ ...item })); // Create a copy to avoid mutating original
+
+  // Example: if startDate and endDate were actual Date objects and month was parseable:
+  // if (startDate && endDate) {
+  //   dataForClient = chartData.filter(item => {
+  //     const itemMonth = new Date( Date.parse(item.month +" 1, 2024") ); // Simplistic month parsing
+  //     return itemMonth >= new Date(startDate) && itemMonth <= new Date(endDate);
+  //   });
+  // }
+
+  return <TotalConsultationsChartClient data={dataForClient} startDate={startDate} endDate={endDate} />;
 }

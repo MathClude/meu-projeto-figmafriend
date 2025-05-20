@@ -14,29 +14,33 @@ interface ChartData {
 
 interface FaturamentoCustoResultadoChartClientProps {
   data: ChartData[];
+  startDate?: string;
+  endDate?: string;
 }
 
 const chartConfig = {
   Faturamento: {
     label: "Faturamento",
-    color: "hsl(var(--chart-1))", // Primary Purple
+    color: "hsl(var(--chart-1))", 
   },
   Custo: {
     label: "Custo",
-    color: "hsl(var(--chart-6))", // Orange
+    color: "hsl(var(--chart-6))", 
   },
   ResultadoBruto: {
     label: "Resultado bruto",
-    color: "hsl(var(--chart-5))", // Teal
+    color: "hsl(var(--chart-5))", 
   },
 } satisfies ChartConfig;
 
-export function FaturamentoCustoResultadoChartClient({ data }: FaturamentoCustoResultadoChartClientProps) {
+export function FaturamentoCustoResultadoChartClient({ data, startDate, endDate }: FaturamentoCustoResultadoChartClientProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    // console.log('FaturamentoCustoResultadoChartClient dates:', { startDate, endDate });
+    // TODO: If data fetching/filtering were client-side, use startDate and endDate here
+  }, [startDate, endDate]);
 
   if (!isMounted) {
     return <div className="h-[300px] w-full bg-muted animate-pulse rounded-md" data-ai-hint="chart placeholder"></div>;

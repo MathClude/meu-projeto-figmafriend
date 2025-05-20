@@ -1,8 +1,13 @@
+
 // Adapted from figma-friend/ProjectTable.tsx
+"use client"; // Marking as client to allow console.log for debugging if needed
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ArrowUp } from "lucide-react";
+import { Button as ShadButton } from "@/components/ui/button"; // Renamed to avoid conflict
+import { useEffect } from "react";
 
-const companies = [
+const companiesData = [
   { empresa: "Shouders", faturamento: "R$ 1.200.000,00", totalConsultas: "20%", sinistralidade: "15%" },
   { empresa: "OABRJ", faturamento: "R$ 1.200.000,00", totalConsultas: "20%", sinistralidade: "15%" },
   { empresa: "D2PAR", faturamento: "R$ 1.200.000,00", totalConsultas: "20%", sinistralidade: "15%" },
@@ -15,31 +20,43 @@ const companies = [
   { empresa: "Mercantil", faturamento: "R$ 1.200.000,00", totalConsultas: "20%", sinistralidade: "15%" },
 ];
 
-export function CompanyDetailsTable() {
+interface CompanyDetailsTableProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export function CompanyDetailsTable({ startDate, endDate }: CompanyDetailsTableProps) {
+  useEffect(() => {
+    // console.log('CompanyDetailsTable received dates:', { startDate, endDate });
+    // TODO: Filter companiesData based on startDate and endDate or fetch new data
+  }, [startDate, endDate]);
+
+  const companies = companiesData; // Use original hardcoded data for now
+
   return (
     <div data-ai-hint="company details table">
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[300px]">
-              <Button variant="ghost" size="sm" className="pl-0 text-muted-foreground hover:text-foreground">
+              <ShadButton variant="ghost" size="sm" className="pl-0 text-muted-foreground hover:text-foreground">
                 Empresa <ArrowUp className="ml-2 h-4 w-4" />
-              </Button>
+              </ShadButton>
             </TableHead>
             <TableHead>
-              <Button variant="ghost" size="sm" className="pl-0 text-muted-foreground hover:text-foreground">
+              <ShadButton variant="ghost" size="sm" className="pl-0 text-muted-foreground hover:text-foreground">
                 Faturamento <ArrowUp className="ml-2 h-4 w-4" />
-              </Button>
+              </ShadButton>
             </TableHead>
             <TableHead>
-              <Button variant="ghost" size="sm" className="pl-0 text-muted-foreground hover:text-foreground">
+              <ShadButton variant="ghost" size="sm" className="pl-0 text-muted-foreground hover:text-foreground">
                 Total de Consultas <ArrowUp className="ml-2 h-4 w-4" />
-              </Button>
+              </ShadButton>
             </TableHead>
             <TableHead>
-              <Button variant="ghost" size="sm" className="pl-0 text-muted-foreground hover:text-foreground">
+              <ShadButton variant="ghost" size="sm" className="pl-0 text-muted-foreground hover:text-foreground">
                 % Sinistralidade <ArrowUp className="ml-2 h-4 w-4" />
-              </Button>
+              </ShadButton>
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -57,7 +74,3 @@ export function CompanyDetailsTable() {
     </div>
   );
 }
-// Temporary Button component to avoid error, replace with actual import if not present globally
-// For components/ui/button if it's not already global or setup properly
-import { Button as ShadButton } from "@/components/ui/button";
-const Button = ShadButton;

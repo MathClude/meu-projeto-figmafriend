@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
@@ -12,21 +13,24 @@ interface ChartData {
 
 interface SpecialtyConsultationsChartClientProps {
   data: ChartData[];
+  startDate?: string;
+  endDate?: string;
 }
 
-// chartConfig is not directly used for individual bar colors here, but good for consistency
 const chartConfig = {
   value: {
     label: "Consultas",
   },
 } satisfies ChartConfig;
 
-export function SpecialtyConsultationsChartClient({ data }: SpecialtyConsultationsChartClientProps) {
+export function SpecialtyConsultationsChartClient({ data, startDate, endDate }: SpecialtyConsultationsChartClientProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    // console.log('SpecialtyConsultationsChartClient dates:', { startDate, endDate });
+    // TODO: If data fetching/filtering were client-side, use startDate and endDate here
+  }, [startDate, endDate]);
 
   if (!isMounted) {
     return <div className="h-[300px] w-full bg-muted animate-pulse rounded-md" data-ai-hint="chart placeholder"></div>;

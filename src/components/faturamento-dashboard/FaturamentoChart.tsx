@@ -1,3 +1,4 @@
+
 "use client";
 
 import { FaturamentoChartClient } from "./FaturamentoChartClient";
@@ -17,6 +18,14 @@ const chartData = [
   { month: "DEZ", Faturamento: 2000000 },
 ];
 
-export function FaturamentoChart() {
-  return <FaturamentoChartClient data={chartData} />;
+interface FaturamentoChartProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export function FaturamentoChart({ startDate, endDate }: FaturamentoChartProps) {
+  // TODO: Filter chartData based on startDate and endDate
+  // console.log('FaturamentoChart received dates:', { startDate, endDate });
+  const dataForClient = chartData; // Use original hardcoded data for now
+  return <FaturamentoChartClient data={dataForClient} startDate={startDate} endDate={endDate} />;
 }

@@ -12,6 +12,8 @@ interface ChartData {
 
 interface FaturamentoChartClientProps {
   data: ChartData[];
+  startDate?: string;
+  endDate?: string;
 }
 
 const chartConfig = {
@@ -21,12 +23,14 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function FaturamentoChartClient({ data }: FaturamentoChartClientProps) {
+export function FaturamentoChartClient({ data, startDate, endDate }: FaturamentoChartClientProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    // console.log('FaturamentoChartClient dates:', { startDate, endDate });
+    // TODO: If data fetching/filtering were client-side, use startDate and endDate here
+  }, [startDate, endDate]);
 
   if (!isMounted) {
     return <div className="h-[300px] w-full bg-muted animate-pulse rounded-md" data-ai-hint="chart placeholder"></div>;

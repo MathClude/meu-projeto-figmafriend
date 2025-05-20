@@ -1,8 +1,9 @@
+
 // Adapted from figma-friend/SalesChartClient.tsx
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { ChartConfig, ChartContainer, ChartTooltipContent } from "@/components/ui/chart"; // ChartTooltip removed as it's a direct recharts component
+import { ChartConfig, ChartContainer, ChartTooltipContent } from "@/components/ui/chart"; 
 import { useEffect, useState } from 'react';
 
 interface ChartData {
@@ -12,21 +13,25 @@ interface ChartData {
 
 interface TotalConsultationsChartClientProps {
   data: ChartData[];
+  startDate?: string;
+  endDate?: string;
 }
 
 const chartConfig = {
   Consultas: {
     label: "Consultas",
-    color: "hsl(var(--primary))", // Using primary color from theme
+    color: "hsl(var(--primary))", 
   },
 } satisfies ChartConfig
 
-export function TotalConsultationsChartClient({ data }: TotalConsultationsChartClientProps) {
+export function TotalConsultationsChartClient({ data, startDate, endDate }: TotalConsultationsChartClientProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    // console.log('TotalConsultationsChartClient dates:', { startDate, endDate });
+    // TODO: If data fetching/filtering were client-side, use startDate and endDate here
+  }, [startDate, endDate]);
 
   if (!isMounted) {
     return <div className="h-[300px] w-full bg-muted animate-pulse rounded-md" data-ai-hint="chart placeholder"></div>;
@@ -51,7 +56,6 @@ export function TotalConsultationsChartClient({ data }: TotalConsultationsChartC
               axisLine={false}
               fontSize={12}
               stroke="hsl(var(--foreground))"
-              // tickFormatter={(value) => `${value / 1000}k`} // Example formatter
             />
             <Tooltip
               cursor={{ fill: 'hsl(var(--accent)/0.3)' }}

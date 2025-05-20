@@ -1,4 +1,5 @@
-"use client";
+
+"use client"; // Marking wrapper as client to allow console.log for debugging if needed
 import { SpecialtyConsultationsChartClient } from "./SpecialtyConsultationsChartClient";
 
 const chartData = [
@@ -9,6 +10,14 @@ const chartData = [
   { name: "Personal", value: 1700, color: "hsl(var(--chart-6))" },
 ];
 
-export function SpecialtyConsultationsChart() {
-  return <SpecialtyConsultationsChartClient data={chartData} />;
+interface SpecialtyConsultationsChartProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export function SpecialtyConsultationsChart({ startDate, endDate }: SpecialtyConsultationsChartProps) {
+  // TODO: Filter chartData based on startDate and endDate
+  // console.log('SpecialtyConsultationsChart received dates:', { startDate, endDate });
+  const dataForClient = chartData; // Use original hardcoded data for now
+  return <SpecialtyConsultationsChartClient data={dataForClient} startDate={startDate} endDate={endDate} />;
 }

@@ -1,3 +1,4 @@
+
 // Renamed and adapted from figma-friend/Dashboard.tsx
 import { StatCard, SubStatDisplay } from './StatCard';
 import { TotalConsultationsChart } from './TotalConsultationsChart';
@@ -6,7 +7,13 @@ import { CompanyDetailsTable } from './CompanyDetailsTable';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { BarChart3, ListChecks } from 'lucide-react';
 
-export function HealthDashboard() {
+interface HealthDashboardProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export function HealthDashboard({ startDate, endDate }: HealthDashboardProps) {
+  // console.log("HealthDashboard dates:", { startDate, endDate }); // For debugging
   return (
     <div className="space-y-6 md:space-y-8">
       {/* Main Stats Row */}
@@ -52,13 +59,11 @@ export function HealthDashboard() {
         <Card className="transition-all hover:shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
-              {/* Icon can be added if desired, not prominent in mockup for this title */}
               Total de Consultas
             </CardTitle>
-            {/* <CardDescription>Visão mensal das consultas.</CardDescription> */}
           </CardHeader>
           <CardContent className="pl-0">
-            <TotalConsultationsChart />
+            <TotalConsultationsChart startDate={startDate} endDate={endDate} />
           </CardContent>
         </Card>
         
@@ -67,19 +72,17 @@ export function HealthDashboard() {
             <CardTitle className="flex items-center gap-2 text-lg">
               Consultas pro especialidades
             </CardTitle>
-            {/* <CardDescription>Distribuição de consultas por especialidade.</CardDescription> */}
           </CardHeader>
           <CardContent>
-            <SpecialtyConsultationsChart />
+            <SpecialtyConsultationsChart startDate={startDate} endDate={endDate} />
           </CardContent>
         </Card>
       </div>
 
       {/* Data Table Row */}
       <Card className="transition-all hover:shadow-lg">
-        {/* Table title is part of the table component in mockup */}
-        <CardContent className="p-0 pt-4"> {/* Remove default padding for full-width table effect */}
-          <CompanyDetailsTable />
+        <CardContent className="p-0 pt-4">
+          <CompanyDetailsTable startDate={startDate} endDate={endDate} />
         </CardContent>
       </Card>
     </div>

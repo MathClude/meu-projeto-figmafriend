@@ -1,3 +1,4 @@
+
 "use client";
 
 import { FaturamentoCustoResultadoChartClient } from "./FaturamentoCustoResultadoChartClient";
@@ -17,6 +18,14 @@ const chartData = [
   { month: "DEZ", Faturamento: 2700000, Custo: 1400000, ResultadoBruto: 1300000 },
 ];
 
-export function FaturamentoCustoResultadoChart() {
-  return <FaturamentoCustoResultadoChartClient data={chartData} />;
+interface FaturamentoCustoResultadoChartProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export function FaturamentoCustoResultadoChart({ startDate, endDate }: FaturamentoCustoResultadoChartProps) {
+  // TODO: Filter chartData based on startDate and endDate
+  // console.log('FaturamentoCustoResultadoChart received dates:', { startDate, endDate });
+  const dataForClient = chartData; // Use original hardcoded data for now
+  return <FaturamentoCustoResultadoChartClient data={dataForClient} startDate={startDate} endDate={endDate} />;
 }
