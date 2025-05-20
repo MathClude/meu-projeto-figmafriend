@@ -1,8 +1,7 @@
 import { StatCard } from './StatCard';
 import { SalesChart } from './SalesChart';
 import { ProjectTable } from './ProjectTable';
-import { QuickActions } from './QuickActions';
-import { Activity, Users, DollarSign, TrendingUp, Package, BarChart3, ListChecks, Settings2 } from 'lucide-react';
+import { Activity, Users, DollarSign, TrendingUp, Package, BarChart3, ListChecks } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 export function Dashboard() {
@@ -40,7 +39,7 @@ export function Dashboard() {
         />
       </div>
 
-      {/* Main Row with Chart and Quick Actions/Recent Activity */}
+      {/* Main Row with Chart and Recent Activity */}
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-7">
         <Card className="lg:col-span-4 transition-all hover:shadow-lg">
           <CardHeader>
@@ -56,17 +55,6 @@ export function Dashboard() {
         </Card>
         
         <div className="lg:col-span-3 space-y-4">
-          <Card className="transition-all hover:shadow-lg">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Settings2 className="h-5 w-5 text-primary" />
-                Quick Actions
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <QuickActions />
-            </CardContent>
-          </Card>
           <Card className="transition-all hover:shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
