@@ -1,8 +1,8 @@
-
-"use client"; // Added because usePathname is used
+// src/components/layout/Header.tsx
+"use client"; 
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Import usePathname
+import { usePathname } from 'next/navigation'; 
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { UserAvatarMenu } from '@/components/health-dashboard/UserAvatarMenu';
 import { Button } from '@/components/ui/button';
@@ -10,12 +10,14 @@ import { HeaderDatePicker } from '@/components/health-dashboard/HeaderDatePicker
 
 export function Header() {
   const pathname = usePathname();
-  let pageTitle = "Eventos de Saúde"; // Default title
+  let pageTitle = "Eventos de Saúde"; 
 
   if (pathname === '/faturamento') {
     pageTitle = "Faturamento";
   } else if (pathname === '/sinistro') {
     pageTitle = "Sinistro";
+  } else if (pathname === '/csc') {
+    pageTitle = "CSC";
   } else if (pathname === '/') {
     pageTitle = "Eventos de Saúde";
   }

@@ -1,18 +1,19 @@
-"use client"; // Adicionado para permitir o uso do usePathname
+// src/components/layout/SidebarContent.tsx
+"use client"; 
 
 import { SidebarContent as ShadSidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarSeparator } from '@/components/ui/sidebar';
-import { HeartPulse, DollarSign, LineChart, ShieldAlert, Users, Settings } from 'lucide-react';
+import { HeartPulse, DollarSign, LineChart, ShieldAlert, FileText, Settings } from 'lucide-react'; // Changed Users to FileText
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Import usePathname
+import { usePathname } from 'next/navigation'; 
 
 export function AppSidebarContent() {
-  const pathname = usePathname(); // Get current path
+  const pathname = usePathname(); 
 
   const menuItems = [
     { href: "/faturamento", icon: <DollarSign />, label: "Faturamento", tooltip: "Faturamento" },
     { href: "/", icon: <LineChart />, label: "Eventos de Saúde", tooltip: "Eventos de Saúde" },
     { href: "/sinistro", icon: <ShieldAlert />, label: "Sinistro", tooltip: "Sinistro" },
-    { href: "/empresas", icon: <Users />, label: "Empresas", tooltip: "Empresas" },
+    { href: "/csc", icon: <FileText />, label: "CSC", tooltip: "CSC" }, // Changed from Empresas to CSC
   ];
 
   return (
