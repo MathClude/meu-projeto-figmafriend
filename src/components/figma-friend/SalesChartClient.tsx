@@ -1,7 +1,8 @@
+
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { ChartConfig, ChartContainer, ChartTooltipContent } from "@/components/ui/chart"
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { useTheme } from 'next-themes'; // Example for potential theme awareness if needed, not strictly used here for colors
 import { useEffect, useState } from 'react';
 
@@ -76,3 +77,4 @@ export function SalesChartClient({ data }: SalesChartClientProps) {
     </div>
   );
 }
+
