@@ -1,5 +1,5 @@
-
 "use client";
+
 import { FaturamentoChartClient } from "./FaturamentoChartClient";
 
 const chartData = [

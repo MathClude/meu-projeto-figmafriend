@@ -1,4 +1,6 @@
 
+"use client"; // Add this directive
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StatCard } from '@/components/health-dashboard/StatCard'; // Reusing StatCard
 import { LineChart as LineChartIcon } from 'lucide-react';
@@ -25,7 +27,7 @@ const DynamicFaturamentoTable = dynamic(
   () => import('./FaturamentoTable').then((mod) => mod.FaturamentoTable),
   {
     loading: () => <Skeleton className="h-[300px] w-full rounded-md" />,
-    ssr: false, 
+    ssr: false,
   }
 );
 
