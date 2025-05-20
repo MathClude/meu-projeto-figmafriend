@@ -1,5 +1,4 @@
-import { ThemeControls } from '@/components/figma-friend/ThemeControls';
-import { Sidebar, SidebarContent as ShadSidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarSeparator, SidebarGroup, SidebarGroupLabel } from '@/components/ui/sidebar';
+import { SidebarContent as ShadSidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarSeparator } from '@/components/ui/sidebar';
 import { LayoutDashboard, Palette } from 'lucide-react';
 import Link from 'next/link';
 
@@ -23,14 +22,6 @@ export function AppSidebarContent() {
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
-      <SidebarSeparator />
-      <SidebarGroup className="mt-auto p-2">
-         <SidebarGroupLabel className="flex items-center gap-2">
-            <Palette size={16}/>
-            Theme Generator
-        </SidebarGroupLabel>
-        <ThemeControls />
-      </SidebarGroup>
     </ShadSidebarContent>
   );
 }
